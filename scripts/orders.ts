@@ -17,7 +17,7 @@ export default async function populateOrders(client: Knex, userIds: number[]): P
     table.date('updated_at');
   });
 
-  return populate(client, tableName, 10000, () => ({
+  return populate(client, tableName, 1000, () => ({
     user_id: faker.helpers.arrayElement(userIds),
     status: faker.helpers.arrayElement(['pending', 'shipped', 'delivered', 'cancelled']),
     order_date: faker.date.recent({ days: 90 }), // Orders placed within the last 90 days

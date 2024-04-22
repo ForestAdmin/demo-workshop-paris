@@ -23,7 +23,7 @@ export default async function populateUsers(client: Knex): Promise<number[]> {
     table.date('updated_at');
   });
 
-  return populate(client, tableName, 1000, () => ({
+  return populate(client, tableName, 100, () => ({
     identity_picture: faker.image.avatar(),
     email: faker.internet.email(),
     signup_date: faker.date.past(),
