@@ -89,6 +89,7 @@ export type Schema = {
       'order:id': number;
       'order:order_date': string;
       'order:status': string;
+      'order:summary': string;
       'order:total_price': number;
       'order:updated_at': string;
       'order:user_id': number;
@@ -124,6 +125,7 @@ export type Schema = {
       'id': number;
       'order_date': string;
       'status': string;
+      'summary': string;
       'total_price': number;
       'updated_at': string;
       'user_id': number;

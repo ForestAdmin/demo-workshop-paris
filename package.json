@@ -22,6 +22,7 @@
   "dependencies": {
     "@forestadmin/agent": "^1.0.0",
     "@forestadmin/datasource-sql": "^1.0.0",
+    "@forestadmin/plugin-flattener": "^1.1.4",
     "dotenv": "^16.0.1",
     "knex": "^2.5.1",
     "pg": "^8.11.3",

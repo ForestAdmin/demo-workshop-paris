@@ -323,6 +323,22 @@
         {
           "defaultValue": null,
           "enums": [],
+          "field": "summary",
+          "integration": null,
+          "inverseOf": null,
+          "isFilterable": false,
+          "isPrimaryKey": false,
+          "isReadOnly": true,
+          "isRequired": false,
+          "isSortable": false,
+          "isVirtual": false,
+          "reference": null,
+          "type": "String",
+          "validations": []
+        },
+        {
+          "defaultValue": null,
+          "enums": [],
           "field": "total_price",
           "integration": null,
           "inverseOf": null,

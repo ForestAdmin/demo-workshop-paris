@@ -137,6 +137,15 @@
     object-hash "^3.0.0"
     uuid "^9.0.0"
 
+"@forestadmin/datasource-toolkit@1.33.0":
+  version "1.33.0"
+  resolved "https://registry.yarnpkg.com/@forestadmin/datasource-toolkit/-/datasource-toolkit-1.33.0.tgz#95cc48864ad965b91ee31537e3c0690cb648501b"
+  integrity sha512-sDpWfANpLNaSz4qP0qDs9gQk0hsNsBlJqeKb0Lw2yvkw0jRPceF+x2BvkkNyNRFN/EM9RRdDvKeppq9gDVibvA==
+  dependencies:
+    luxon "^3.2.1"
+    object-hash "^3.0.0"
+    uuid "^9.0.0"
+
 "@forestadmin/forestadmin-client@1.25.6":
   version "1.25.6"
   resolved "https://registry.yarnpkg.com/@forestadmin/forestadmin-client/-/forestadmin-client-1.25.6.tgz#989fe6b6aa0355eb1a719822567f21295df6f369"
@@ -148,6 +157,14 @@
     object-hash "^3.0.0"
     openid-client "^5.3.1"
     superagent "^8.0.6"
+
+"@forestadmin/plugin-flattener@^1.1.4":
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/@forestadmin/plugin-flattener/-/plugin-flattener-1.1.4.tgz#5605d8b1d0dabb81d51cc0e8440effa1fa8df310"
+  integrity sha512-uScUm86xAbH/iXOWxBeang0IPn6BNGv9Pa7Kyb/hScBKL8ToEKZ2vs4c3Bh8Qoi8Ptaw5F4j800NGxbwyXmmlA==
+  dependencies:
+    "@forestadmin/datasource-toolkit" "1.33.0"
+    object-hash "^3.0.0"
 
 "@humanwhocodes/config-array@^0.11.13":
   version "0.11.14"
