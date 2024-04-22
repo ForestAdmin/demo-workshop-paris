@@ -116,7 +116,7 @@ export default (orders: CollectionCustomizer<Schema, 'orders'>) => {
                   return `
                     <tr>
                       <td>${p.product.name}</td>
-                      <td><img src="${p.product.product_image}" alt="${p.product.name}"></td>
+                      <td><img src="${p.product.product_image}" alt="${p.product.name}" width="100" height="100"></td>
                     </tr>
                   `;
                 })
