@@ -1,7 +1,7 @@
 import type { SslMode } from '@forestadmin/datasource-sql';
 
 import 'dotenv/config';
-import { DataSourceCustomizer, createAgent } from '@forestadmin/agent';
+import { createAgent } from '@forestadmin/agent';
 import { createSqlDataSource } from '@forestadmin/datasource-sql';
 import customizations from './customizations';
 
@@ -27,7 +27,8 @@ agent
   )
   .addDataSource(customizations.createTypicodeDataSource())
   .use(customizations.removeTimestampPlugin, {})
-  .customizeCollection('users', customizations.users);
+  .customizeCollection('users', customizations.users)
+  .customizeCollection('orders', customizations.orders);
 
 agent.mountOnStandaloneServer(Number(process.env.APPLICATION_PORT));
 

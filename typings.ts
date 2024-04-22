@@ -8,6 +8,13 @@ import {
   TSortClause
 } from '@forestadmin/agent';
 
+export type OrderProductsCustomizer = CollectionCustomizer<Schema, 'order_products'>;
+export type OrderProductsRecord = TPartialRow<Schema, 'order_products'>;
+export type OrderProductsConditionTree = TConditionTree<Schema, 'order_products'>;
+export type OrderProductsFilter = TPaginatedFilter<Schema, 'order_products'>;
+export type OrderProductsSortClause = TSortClause<Schema, 'order_products'>;
+export type OrderProductsAggregation = TAggregation<Schema, 'order_products'>;
+
 export type OrdersCustomizer = CollectionCustomizer<Schema, 'orders'>;
 export type OrdersRecord = TPartialRow<Schema, 'orders'>;
 export type OrdersConditionTree = TConditionTree<Schema, 'orders'>;
@@ -66,12 +73,58 @@ export type Schema = {
     nested: {};
     flat: {};
   };
+  'order_products': {
+    plain: {
+      'id': number;
+      'order_id': number;
+      'product_id': number;
+      'quantity': number;
+    };
+    nested: {
+      'order': Schema['orders']['plain'] & Schema['orders']['nested'];
+      'product': Schema['products']['plain'] & Schema['products']['nested'];
+    };
+    flat: {
+      'order:created_at': string;
+      'order:id': number;
+      'order:order_date': string;
+      'order:status': string;
+      'order:total_price': number;
+      'order:updated_at': string;
+      'order:user_id': number;
+      'product:added_date': string;
+      'product:category': string;
+      'product:created_at': string;
+      'product:description': string;
+      'product:id': number;
+      'product:is_active': boolean;
+      'product:name': string;
+      'product:price': number;
+      'product:product_image': string;
+      'product:stock': number;
+      'product:updated_at': string;
+      'order:user:birthdate': string;
+      'order:user:cellphone': string;
+      'order:user:created_at': string;
+      'order:user:email': string;
+      'order:user:firstname': string;
+      'order:user:fullname': string;
+      'order:user:id': number;
+      'order:user:identity_picture': string;
+      'order:user:is_blocked': boolean;
+      'order:user:lastname': string;
+      'order:user:password': string;
+      'order:user:signup_date': string;
+      'order:user:updated_at': string;
+    };
+  };
   'orders': {
     plain: {
       'created_at': string;
       'id': number;
       'order_date': string;
       'status': string;
+      'total_price': number;
       'updated_at': string;
       'user_id': number;
     };
