@@ -18,6 +18,8 @@ export default async function populateProducts(client: Knex): Promise<number[]> 
     table.boolean('is_active');
     table.date('added_date');
     table.string('product_image');
+    table.date('created_at');
+    table.date('updated_at');
   });
 
   return populate(client, tableName, 1000, () => ({
@@ -29,5 +31,7 @@ export default async function populateProducts(client: Knex): Promise<number[]> 
     is_active: faker.datatype.boolean(),
     added_date: faker.date.recent(),
     product_image: faker.image.urlLoremFlickr({ category: 'product' }),
+    created_at: faker.date.past(),
+    updated_at: faker.date.recent(),
   }));
 }

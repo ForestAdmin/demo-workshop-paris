@@ -65,5 +65,9 @@ export default (users: CollectionCustomizer<Schema, 'users'>) => {
           return resultBuilder.error(`Failed to anonymize user(s) ${error.message}.`);
         }
       },
+    })
+    .addHook('After', 'Create', async context => {
+      if (context.records[0]) console.info(`Sending an email at ${context.records[0]?.email}`);
+      else context.throwValidationError('User is missing email address');
     });
 };

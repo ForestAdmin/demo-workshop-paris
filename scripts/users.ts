@@ -19,6 +19,8 @@ export default async function populateUsers(client: Knex): Promise<number[]> {
     table.string('password').notNullable();
     table.string('cellphone');
     table.boolean('is_blocked');
+    table.date('created_at');
+    table.date('updated_at');
   });
 
   return populate(client, tableName, 1000, () => ({
@@ -31,5 +33,7 @@ export default async function populateUsers(client: Knex): Promise<number[]> {
     password: faker.internet.password(),
     cellphone: faker.phone.number(),
     is_blocked: faker.datatype.boolean(),
+    created_at: faker.date.past(),
+    updated_at: faker.date.recent(),
   }));
 }
