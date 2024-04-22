@@ -43,7 +43,6 @@ export default (orders: CollectionCustomizer<Schema, 'orders'>) => {
               },
               ['product_id', 'product:name', 'product:product_image'],
             );
-            console.log(products);
             return `
             <style>
               body {
@@ -75,19 +74,25 @@ export default (orders: CollectionCustomizer<Schema, 'orders'>) => {
               .order p:not(:last-child) {
                 margin-bottom: 5px;
               }
-              .product-list {
-                display: flex;
-                flex-wrap: wrap;
+              .product-table {
+                width: 100%;
+                border-collapse: collapse;
                 margin: 10px 0 0 0;
               }
-              .product-item {
-                flex: 0 0 33.333%;
-                max-width: 33.333%;
+              .product-table th,
+              .product-table td {
+                border: 1px solid black;
                 padding: 10px;
-                box-sizing: border-box;
-                text-align: center;
+                text-align: left;
               }
-              .product-item img {
+              .product-table th {
+                background-color: #f2f2f2;
+                font-weight: normal;
+              }
+              .product-table tr:nth-child(even) {
+                background-color: #f2f2f2;
+              }
+              .product-table img {
                 max-width: 100%;
                 height: auto;
               }
@@ -98,18 +103,26 @@ export default (orders: CollectionCustomizer<Schema, 'orders'>) => {
             <p>Status: ${record.status}</p>
             <p>Total Price: ${record.total_price}$</p>
             <p>User: ${record.user.fullname}</p>
-            <div class="product-list">
+            <table class="product-table">
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>Image</th>
+                </tr>
+              </thead>
+              <tbody>
               ${products
-                .map(
-                  p => `
-                <div class="product-item">
-                  <p>${p.product.name}</p>
-                  <img src="${p.product.product_image}" alt="${p.product.name}">
-                </div>
-              `,
-                )
-                .join('')}
-            </div>
+                .map(p => {
+                  return `
+                    <tr>
+                      <td>${p.product.name}</td>
+                      <td><img src="${p.product.product_image}" alt="${p.product.name}"></td>
+                    </tr>
+                  `;
+                })
+                .join('\n')}
+              </tbody>
+            </table>
           </div>
           `;
           }),

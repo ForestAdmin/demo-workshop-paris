@@ -24,6 +24,8 @@ export default (users: CollectionCustomizer<Schema, 'users'>) => {
         },
       ],
     }))
+    .removeField('firstname')
+    .removeField('lastname')
     .replaceFieldWriting('fullname', value => {
       const [firstname, lastname] = value.split(' ');
       return {
@@ -69,5 +71,9 @@ export default (users: CollectionCustomizer<Schema, 'users'>) => {
     .addHook('After', 'Create', async context => {
       if (context.records[0]) console.info(`Sending an email at ${context.records[0]?.email}`);
       else context.throwValidationError('User is missing email address');
+    })
+    .addOneToManyRelation('posts', 'api_post', {
+      originKey: 'userId',
+      originKeyTarget: 'id',
     });
 };
