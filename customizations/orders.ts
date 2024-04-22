@@ -41,7 +41,7 @@ export default (orders: CollectionCustomizer<Schema, 'orders'>) => {
                   value: record.id,
                 },
               },
-              ['product_id', 'product:name', 'product:product_image'],
+              ['product_id', 'product:name', 'product:product_image', 'quantity'],
             );
             return `
             <style>
@@ -106,8 +106,9 @@ export default (orders: CollectionCustomizer<Schema, 'orders'>) => {
             <table class="product-table">
               <thead>
                 <tr>
-                  <th>Product</th>
                   <th>Image</th>
+                  <th>Product</th>
+                  <th>Quantity</th>
                 </tr>
               </thead>
               <tbody>
@@ -115,8 +116,9 @@ export default (orders: CollectionCustomizer<Schema, 'orders'>) => {
                 .map(p => {
                   return `
                     <tr>
-                      <td>${p.product.name}</td>
                       <td><img src="${p.product.product_image}" alt="${p.product.name}" width="100" height="100"></td>
+                      <td>${p.product.name}</td>
+                      <td>${p.quantity}</td>
                     </tr>
                   `;
                 })
