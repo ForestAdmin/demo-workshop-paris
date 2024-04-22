@@ -12,6 +12,7 @@ export default (orders: CollectionCustomizer<Schema, 'orders'>) => {
       const orderProducts = await context.dataSource
         .getCollection('order_products')
         .list({ conditionTree: { field: 'order_id', operator: 'In', value: orderIds } }, [
+          'order_id',
           'quantity',
           'product:price',
         ]);
