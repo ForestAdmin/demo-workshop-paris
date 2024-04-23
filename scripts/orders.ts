@@ -2,8 +2,7 @@ import { faker } from '@faker-js/faker';
 import { Knex } from 'knex';
 
 import populate from './utils';
-
-export const ORDER_STATUS = ['pending', 'shipped', 'delivered', 'cancelled'];
+import { ORDER_STATUS } from '../customizations/orders';
 
 export default async function populateOrders(client: Knex, userIds: number[]): Promise<number[]> {
   const tableName = 'orders';

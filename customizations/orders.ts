@@ -1,7 +1,8 @@
 import { CollectionCustomizer } from '@forestadmin/agent';
 
 import { Schema } from '../typings';
-import { ORDER_STATUS } from '../scripts/orders';
+
+export const ORDER_STATUS = ['pending', 'shipped', 'delivered', 'cancelled'];
 
 export default (orders: CollectionCustomizer<Schema, 'orders'>) => {
   orders
