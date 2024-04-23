@@ -45,18 +45,9 @@ export default (orders: CollectionCustomizer<Schema, 'orders'>) => {
             );
             return `
             <style>
-              body {
-                font-family: 'Roboto', sans-serif;
-                background-color: #f5f5f5;
-                margin: 0;
-                padding: 0;
-              }
-              .container {
-                max-width: 800px;
-                margin: 0 auto;
-                padding: 20px;
-              }
               .order {
+                overflow: auto;
+
                 background-color: #fff;
                 border-radius: 10px;
                 box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);

@@ -22,7 +22,7 @@ export default async function populateProducts(client: Knex): Promise<number[]> 
     table.date('updated_at');
   });
 
-  return populate(client, tableName, 1000, () => ({
+  return populate(client, tableName, 100, () => ({
     name: faker.commerce.productName(),
     description: faker.commerce.productDescription(),
     price: parseFloat(faker.commerce.price()),

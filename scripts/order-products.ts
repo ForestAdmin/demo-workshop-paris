@@ -19,7 +19,7 @@ export default async (
     table.integer('quantity').notNullable();
   });
 
-  return populate(client, tableName, 10000, () => ({
+  return populate(client, tableName, 5000, () => ({
     order_id: faker.helpers.arrayElement(orderIds),
     product_id: faker.helpers.arrayElement(productIds),
     quantity: faker.number.int({ min: 1, max: 10 }),
