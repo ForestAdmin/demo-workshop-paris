@@ -1,6 +1,7 @@
 import { CollectionCustomizer } from '@forestadmin/agent';
 
 import { Schema } from '../typings';
+import COUPONS from './coupons';
 
 export const ORDER_STATUS = ['pending', 'shipped', 'delivered', 'cancelled'];
 
@@ -27,7 +28,7 @@ export default (orders: CollectionCustomizer<Schema, 'orders'>) => {
             return acc;
           }, 0);
 
-          return price - record.coupon;
+          return price - (COUPONS[record.coupon] || 0);
         });
       },
     })
@@ -170,16 +171,18 @@ export default (orders: CollectionCustomizer<Schema, 'orders'>) => {
           defaultValue: async context => (await context.getRecords(['total_price']))[0].total_price,
         },
         {
-          label: 'coupon price',
-          type: 'Number',
+          label: 'coupon',
+          description: 'select the coupon',
+          type: 'Enum',
           isRequired: true,
+          enumValues: Object.keys(COUPONS),
         },
         {
           label: 'Final price',
           type: 'Number',
           isReadOnly: true,
           value: context =>
-            context.formValues['initial price'] - context.formValues['coupon price'],
+            context.formValues['initial price'] - COUPONS[context.formValues.coupon],
         },
       ],
       execute: async (context, resultBuilder) => {

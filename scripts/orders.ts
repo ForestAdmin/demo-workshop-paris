@@ -17,7 +17,7 @@ export default async function populateOrders(client: Knex, userIds: number[]): P
     table.date('order_date').notNullable();
     table.date('created_at');
     table.date('updated_at');
-    table.integer('coupon');
+    table.string('coupon');
   });
 
   return populate(client, tableName, 1000, () => ({
