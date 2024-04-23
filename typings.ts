@@ -85,10 +85,11 @@ export type Schema = {
       'product': Schema['products']['plain'] & Schema['products']['nested'];
     };
     flat: {
+      'order:coupon': number;
       'order:created_at': string;
       'order:id': number;
       'order:order_date': string;
-      'order:status': string;
+      'order:status': 'cancelled' | 'delivered' | 'pending' | 'shipped';
       'order:summary': string;
       'order:total_price': number;
       'order:updated_at': string;
@@ -121,10 +122,11 @@ export type Schema = {
   };
   'orders': {
     plain: {
+      'coupon': number;
       'created_at': string;
       'id': number;
       'order_date': string;
-      'status': string;
+      'status': 'cancelled' | 'delivered' | 'pending' | 'shipped';
       'summary': string;
       'total_price': number;
       'updated_at': string;

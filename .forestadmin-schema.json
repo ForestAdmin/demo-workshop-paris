@@ -253,8 +253,75 @@
       "segments": []
     },
     {
-      "actions": [],
+      "actions": [
+        {
+          "id": "orders-1-apply-a-coupon",
+          "name": "apply a coupon",
+          "type": "single",
+          "baseUrl": null,
+          "endpoint": "/forest/_actions/orders/1/apply-a-coupon",
+          "httpMethod": "POST",
+          "redirect": null,
+          "download": false,
+          "fields": [
+            {
+              "field": "Loading...",
+              "type": "String",
+              "isReadOnly": true,
+              "defaultValue": "Form is loading",
+              "description": "",
+              "enums": null,
+              "hook": null,
+              "isRequired": false,
+              "reference": null,
+              "widgetEdit": null
+            }
+          ],
+          "hooks": {"load": true, "change": ["changeHook"]}
+        },
+        {
+          "id": "orders-0-change-status",
+          "name": "change status",
+          "type": "single",
+          "baseUrl": null,
+          "endpoint": "/forest/_actions/orders/0/change-status",
+          "httpMethod": "POST",
+          "redirect": null,
+          "download": false,
+          "fields": [
+            {
+              "field": "Loading...",
+              "type": "String",
+              "isReadOnly": true,
+              "defaultValue": "Form is loading",
+              "description": "",
+              "enums": null,
+              "hook": null,
+              "isRequired": false,
+              "reference": null,
+              "widgetEdit": null
+            }
+          ],
+          "hooks": {"load": true, "change": ["changeHook"]}
+        }
+      ],
       "fields": [
+        {
+          "defaultValue": null,
+          "enums": [],
+          "field": "coupon",
+          "integration": null,
+          "inverseOf": null,
+          "isFilterable": true,
+          "isPrimaryKey": false,
+          "isReadOnly": false,
+          "isRequired": false,
+          "isSortable": true,
+          "isVirtual": false,
+          "reference": null,
+          "type": "Number",
+          "validations": []
+        },
         {
           "defaultValue": null,
           "enums": [],
@@ -306,7 +373,7 @@
         },
         {
           "defaultValue": null,
-          "enums": [],
+          "enums": ["cancelled", "delivered", "pending", "shipped"],
           "field": "status",
           "integration": null,
           "inverseOf": null,
@@ -317,7 +384,7 @@
           "isSortable": true,
           "isVirtual": false,
           "reference": null,
-          "type": "String",
+          "type": "Enum",
           "validations": []
         },
         {

@@ -1,12 +1,13 @@
 import { CollectionCustomizer } from '@forestadmin/agent';
 
 import { Schema } from '../typings';
+import { ORDER_STATUS } from '../scripts/orders';
 
 export default (orders: CollectionCustomizer<Schema, 'orders'>) => {
   orders
     .addField('total_price', {
       columnType: 'Number',
-      dependencies: ['id'],
+      dependencies: ['id', 'coupon'],
       getValues: async (records, context) => {
         const orderIds = records.map(r => r.id);
 
@@ -18,12 +19,14 @@ export default (orders: CollectionCustomizer<Schema, 'orders'>) => {
             'product:price',
           ]);
 
-        return orderIds.map(id => {
-          const ops = orderProducts.filter(o => o.order_id === id);
-          return ops.reduce((acc, o) => {
+        return records.map(record => {
+          const ops = orderProducts.filter(o => o.order_id === record.id);
+          const price = ops.reduce((acc, o) => {
             acc += o.quantity * o.product.price;
             return acc;
           }, 0);
+
+          return price - record.coupon;
         });
       },
     })
@@ -120,6 +123,68 @@ export default (orders: CollectionCustomizer<Schema, 'orders'>) => {
           `;
           }),
         );
+      },
+    })
+    .addAction('change status', {
+      scope: 'Single',
+      form: [
+        {
+          label: 'status',
+          type: 'Enum',
+          enumValues: ORDER_STATUS,
+          defaultValue: async context => (await context.getRecords(['status']))[0].status,
+        },
+        {
+          label: 'reason',
+          type: 'String',
+          description: 'Please wrote the reason below',
+          widget: 'TextArea',
+          if: context => context.formValues.status === 'cancelled',
+          isRequired: true,
+        },
+      ],
+      execute: async (context, resultBuilder) => {
+        const { status } = context.formValues;
+        await context.collection.update(context.filter, { status });
+
+        if (status === 'cancelled') {
+          const html = `
+            <h1>The order was now cancelled</h1>
+            <br>There is the reason:<br>
+            <span style='font-style: italic'>${context.formValues.reason}<span>
+          `;
+          return resultBuilder.success(`The order was now ${status}.`, { html });
+        }
+
+        return resultBuilder.success(`The order was now ${status}.`);
+      },
+    })
+    .addAction('apply a coupon', {
+      scope: 'Single',
+      form: [
+        {
+          label: 'initial price',
+          type: 'Number',
+          isReadOnly: true,
+          defaultValue: async context => (await context.getRecords(['total_price']))[0].total_price,
+        },
+        {
+          label: 'coupon price',
+          type: 'Number',
+          isRequired: true,
+        },
+        {
+          label: 'Final price',
+          type: 'Number',
+          isReadOnly: true,
+          value: context =>
+            context.formValues['initial price'] - context.formValues['coupon price'],
+        },
+      ],
+      execute: async (context, resultBuilder) => {
+        await context.collection.update(context.filter, { coupon: context.formValues.coupon });
+
+        return resultBuilder.success('Coupon sucessfully applied.');
       },
     });
 };
