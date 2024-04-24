@@ -15,12 +15,15 @@ export default (users: CollectionCustomizer<Schema, 'users'>) => {
       getValues: async (records, context) => {
         const userIds = records.map(r => r.id).join(',');
 
-        const response = await fetch(process.env.API_URL + `/api/users/getTotalOrder?userIds=${userIds}`, {
-          method: 'POST',
-        });
+        const response = await fetch(
+          `${process.env.API_URL}/api/users/getTotalOrder?userIds=${userIds}`,
+          {
+            method: 'POST',
+          },
+        );
 
         return (await response.json()).values;
-      }
+      },
     })
     .replaceFieldOperator('fullname', 'Contains', value => ({
       aggregator: 'Or',
@@ -86,12 +89,15 @@ export default (users: CollectionCustomizer<Schema, 'users'>) => {
       execute: async (context, resultBuilder) => {
         const userId = context.getRecordId();
 
-        const response = await fetch(process.env.API_URL + `/api/users/${userId}/actions/resendEmail`, {
-          method: 'POST',
-        })
+        const response = await fetch(
+          `${process.env.API_URL}/api/users/${userId}/actions/resendEmail`,
+          {
+            method: 'POST',
+          },
+        );
 
         return resultBuilder.success((await response.json()).response);
-      }
+      },
     })
     .addHook('After', 'Create', async context => {
       if (context.records[0]) console.info(`Sending an email at ${context.records[0]?.email}`);

@@ -3,8 +3,8 @@ import type { SslMode } from '@forestadmin/datasource-sql';
 import 'dotenv/config';
 import { createAgent } from '@forestadmin/agent';
 import { createSqlDataSource } from '@forestadmin/datasource-sql';
-import customizations from './customizations';
 import express from 'express';
+import customizations from './customizations';
 
 import type { Schema } from './typings';
 import setupApi from './api';
@@ -37,12 +37,15 @@ agent
 
 app.use(setupApi());
 
-agent.mountOnExpress(app).start().catch(error => {
-  // eslint-disable-next-line no-console
-  console.error('\x1b[31merror:\x1b[0m Forest Admin agent failed to start\n', error.stack);
-  process.exit(1);
-});
+agent
+  .mountOnExpress(app)
+  .start()
+  .catch(error => {
+    // eslint-disable-next-line no-console
+    console.error('\x1b[31merror:\x1b[0m Forest Admin agent failed to start\n', error.stack);
+    process.exit(1);
+  });
 
 app.listen(process.env.PORT, () => {
   console.log(`Server is running on port ${process.env.PORT}`);
-})
+});
