@@ -28,7 +28,9 @@ agent
   .use(customizations.removeTimestampPlugin, {})
   .customizeCollection('users', customizations.users)
   .customizeCollection('orders', customizations.orders)
-  .customizeCollection('order_products', customizations.orderProducts);
+  .customizeCollection('order_products', customizations.orderProducts)
+  .customizeCollection('products', customizations.products);
+
 agent.mountOnStandaloneServer(Number(process.env.PORT));
 
 agent.start().catch(error => {
