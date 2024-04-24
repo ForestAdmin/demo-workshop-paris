@@ -127,7 +127,7 @@ export default (orders: CollectionCustomizer<Schema, 'orders'>) => {
         );
       },
     })
-    .addAction('change status', {
+    .addAction('Change status', {
       scope: 'Single',
       form: [
         {
@@ -161,7 +161,7 @@ export default (orders: CollectionCustomizer<Schema, 'orders'>) => {
         return resultBuilder.success(`The order was now ${status}.`);
       },
     })
-    .addAction('apply a coupon', {
+    .addAction('Apply a coupon', {
       scope: 'Single',
       form: [
         {
