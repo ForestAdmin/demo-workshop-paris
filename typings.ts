@@ -78,6 +78,17 @@ export type Schema = {
       'id': number;
       'order_id': number;
       'product_id': number;
+      'product@@@added_date': string;
+      'product@@@category': string;
+      'product@@@created_at': string;
+      'product@@@description': string;
+      'product@@@id': number;
+      'product@@@is_active': boolean;
+      'product@@@name': string;
+      'product@@@price': number;
+      'product@@@product_image': string;
+      'product@@@stock': number;
+      'product@@@updated_at': string;
       'quantity': number;
     };
     nested: {
