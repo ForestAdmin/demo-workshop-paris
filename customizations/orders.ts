@@ -52,12 +52,9 @@ export default (orders: CollectionCustomizer<Schema, 'orders'>) => {
             <style>
               .order {
                 overflow: auto;
-                height: 870px;
-                background-color: #fff;
-                border-radius: 10px;
-                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
                 padding: 20px;
                 margin-bottom: 20px;
+                height: 100%;
               }
               .order h3 {
                 color: #333;
@@ -91,6 +88,17 @@ export default (orders: CollectionCustomizer<Schema, 'orders'>) => {
               .product-table img {
                 max-width: 100%;
                 height: auto;
+              }
+              .c-beta-label.c-beta-label--top:has(.order) {
+                height: 100%;
+              }
+              .c-beta-label.c-beta-label--top:has(.order) > div {
+                height: 100%;
+              }
+              .c-beta-label.c-beta-label--top:has(.order) .c-row-value.c-widget-layout-rich-text  {
+                height: 100%;
+                display: flex;
+                flex-direction: column;
               }
           </style>
           <div class="order">
