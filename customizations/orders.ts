@@ -151,14 +151,14 @@ export default (orders: CollectionCustomizer<Schema, 'orders'>) => {
 
         if (status === 'cancelled') {
           const html = `
-            <h1>The order was now cancelled</h1>
+            <h1>The order is now cancelled</h1>
             <br>There is the reason:<br>
             <span style='font-style: italic'>${context.formValues.reason}<span>
           `;
-          return resultBuilder.success(`The order was now ${status}.`, { html });
+          return resultBuilder.success(`The order is now ${status}.`, { html });
         }
 
-        return resultBuilder.success(`The order was now ${status}.`);
+        return resultBuilder.success(`The order is now ${status}.`);
       },
     })
     .addAction('Apply a coupon', {
