@@ -4,8 +4,12 @@ import 'dotenv/config';
 import { createAgent } from '@forestadmin/agent';
 import { createSqlDataSource } from '@forestadmin/datasource-sql';
 import customizations from './customizations';
+import express from 'express';
 
 import type { Schema } from './typings';
+import setupApi from './api';
+
+const app = express();
 
 const agent = createAgent<Schema>({
   authSecret: process.env.FOREST_AUTH_SECRET!,
@@ -31,10 +35,14 @@ agent
   .customizeCollection('order_products', customizations.orderProducts)
   .customizeCollection('products', customizations.products);
 
-agent.mountOnStandaloneServer(Number(process.env.PORT));
+app.use(setupApi());
 
-agent.start().catch(error => {
+agent.mountOnExpress(app).start().catch(error => {
   // eslint-disable-next-line no-console
   console.error('\x1b[31merror:\x1b[0m Forest Admin agent failed to start\n', error.stack);
   process.exit(1);
 });
+
+app.listen(process.env.APP_PORT, () => {
+  console.log(`Server is running on port ${process.env.APP_PORT}`);
+})

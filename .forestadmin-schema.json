@@ -811,6 +811,18 @@
           "download": false,
           "fields": [],
           "hooks": {"load": false, "change": ["changeHook"]}
+        },
+        {
+          "id": "users-1-resend-promotional-email",
+          "name": "Resend promotional  email",
+          "type": "single",
+          "baseUrl": null,
+          "endpoint": "/forest/_actions/users/1/resend-promotional-email",
+          "httpMethod": "POST",
+          "redirect": null,
+          "download": false,
+          "fields": [],
+          "hooks": {"load": false, "change": ["changeHook"]}
         }
       ],
       "fields": [
@@ -924,6 +936,22 @@
           "isVirtual": false,
           "reference": null,
           "type": "Boolean",
+          "validations": []
+        },
+        {
+          "defaultValue": null,
+          "enums": [],
+          "field": "numberOfOrder",
+          "integration": null,
+          "inverseOf": null,
+          "isFilterable": false,
+          "isPrimaryKey": false,
+          "isReadOnly": true,
+          "isRequired": false,
+          "isSortable": false,
+          "isVirtual": false,
+          "reference": null,
+          "type": "Number",
           "validations": []
         },
         {

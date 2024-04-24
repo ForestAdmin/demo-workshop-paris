@@ -126,6 +126,7 @@ export type Schema = {
       'order:user:identity_picture': string | null;
       'order:user:is_blocked': boolean | null;
       'order:user:lastname': string | null;
+      'order:user:numberOfOrder': number | null;
       'order:user:password': string;
       'order:user:signup_date': string | null;
       'order:user:updated_at': string | null;
@@ -157,6 +158,7 @@ export type Schema = {
       'user:identity_picture': string | null;
       'user:is_blocked': boolean | null;
       'user:lastname': string | null;
+      'user:numberOfOrder': number | null;
       'user:password': string;
       'user:signup_date': string | null;
       'user:updated_at': string | null;
@@ -191,6 +193,7 @@ export type Schema = {
       'identity_picture': string | null;
       'is_blocked': boolean | null;
       'lastname': string | null;
+      'numberOfOrder': number | null;
       'password': string;
       'signup_date': string | null;
       'updated_at': string | null;
